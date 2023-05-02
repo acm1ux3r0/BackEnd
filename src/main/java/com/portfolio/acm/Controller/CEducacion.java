@@ -55,7 +55,7 @@ public class CEducacion {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!sEducacion.existsById(id)){
-            return new ResponseEntity(new Mensaje("No exixste el ID"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
         sEducacion.delete(id);
         return new ResponseEntity(new Mensaje("Educación eliminada"), HttpStatus.OK);
@@ -96,7 +96,6 @@ public class CEducacion {
         
         sEducacion.save(educacion);
         
-        return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);
-    }
-    
+        return new ResponseEntity(new Mensaje("La Educación ha sido actualizada"), HttpStatus.OK);
+    }    
 }

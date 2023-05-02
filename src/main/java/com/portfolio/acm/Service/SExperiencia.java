@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 
 public class SExperiencia {
     
-    @Autowired //Inyectar el reposotirio a continucación: RExperiencia.
+    @Autowired //Inyectar el reposotirio a continuación: RExperiencia.
     RExperiencia rExperiencia;
     
     public List<Experiencia> list(){
@@ -35,7 +35,7 @@ public class SExperiencia {
         return rExperiencia.findById(id);    
     }
     
-    public Optional<Experiencia> getByNombreE(String nombreE){
+    public Optional<Experiencia> getByNombreE(String nombreE){/* optional: porque puede estar y puede que no*/
         return rExperiencia.findByNombreE(nombreE);
     }
     

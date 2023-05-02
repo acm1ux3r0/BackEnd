@@ -26,11 +26,11 @@ public class SEducacion {
     REducacion rEducacion;
 
     public List<Educacion> list() {
-        return rEducacion.findAll();
+        return rEducacion.findAll();// Que arme una lista trayendonos todos.
     }
 
     public Optional<Educacion> getOne(int id) {
-        return rEducacion.findById(id);
+        return rEducacion.findById(id); 
     }
 
     public Optional<Educacion> getByNombreE(String nombreE) {
@@ -38,7 +38,7 @@ public class SEducacion {
     }
 
     public void save(Educacion educacion) {
-        rEducacion.save(educacion);
+        rEducacion.save(educacion);//(this)
     }
 
     public void delete(int id) {

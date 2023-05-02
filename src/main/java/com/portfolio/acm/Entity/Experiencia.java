@@ -17,8 +17,9 @@ import javax.persistence.Id;
 
 @Entity
 public class Experiencia {
+    //Vamos a poner las columnas que va a tener nuestra tabla en la DB.
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Tipo de generación.
     private int id;
     private String nombreE;
     private String descripcionE;
