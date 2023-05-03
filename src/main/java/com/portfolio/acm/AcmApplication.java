@@ -8,6 +8,5 @@ public class AcmApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AcmApplication.class, args);
-	}
-        
+	}        
 }
