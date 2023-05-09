@@ -27,9 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author acm1ux3r0
  */
+
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/skill")
+@CrossOrigin(origins = "*") //http://localhost:4200
+@RequestMapping("/hys")
 public class CHys {
 
     @Autowired //Para inyectar el servicio.
@@ -45,7 +46,7 @@ public class CHys {
     //Para traer los datos
     @GetMapping("/detail/{id}/") //para que traiga los detalles de ese ID
     public ResponseEntity<Hys> getById(@PathVariable("id") int id) {
-        if (!shys.existsById(id)) {
+        if (!shys.existsById(id)) { //El signo "!" para decir "Si NO existe el ID..."
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         }
         Hys hys = shys.getOne(id).get();/* Hys es la entidad (tipo) de la variable Hys. */

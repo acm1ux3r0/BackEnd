@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 
-public interface Rhys extends JpaRepository<Hys, Integer>{
+public interface RHys extends JpaRepository<Hys, Integer>{
     //Los métodos solamente se mencionan; no se desarrolan aquí.
     Optional<Hys> findByNombre(String nombre);
     public boolean existsByNombre(String nombre);

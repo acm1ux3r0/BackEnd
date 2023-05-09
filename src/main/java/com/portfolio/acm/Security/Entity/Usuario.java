@@ -56,7 +56,7 @@ public class Usuario {
                                                                     "rol_id" */
      private Set<Rol> roles = new HashSet<>(); //Se asignan las caracterísitcas mencionadas arriba.
     
-    //<<<<<<<<<<        CONSTRUCTORES       >>>>>>>>>>
+            //<<<<<<<<<<        CONSTRUCTORES       >>>>>>>>>>
 
     public Usuario() { }
 

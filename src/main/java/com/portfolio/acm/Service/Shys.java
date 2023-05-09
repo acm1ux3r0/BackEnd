@@ -5,7 +5,7 @@
 package com.portfolio.acm.Service;
 
 import com.portfolio.acm.Entity.Hys;
-import com.portfolio.acm.Repository.Rhys;
+import com.portfolio.acm.Repository.RHys;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 public class SHys {
     
     @Autowired
-    Rhys rhys;
+    RHys rhys;
     
     //      <<<<<<<<<<<<<   Métodos    >>>>>>>>>>>>>>>>   
     
