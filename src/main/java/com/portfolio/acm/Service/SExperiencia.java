@@ -28,11 +28,11 @@ public class SExperiencia {
     RExperiencia rExperiencia;
     
     public List<Experiencia> list(){
-        return rExperiencia.findAll();
+        return rExperiencia.findAll(); //Va buscar y armar una lista de todas las experiencias.
     }
     
     public Optional<Experiencia> getOne(int id){
-        return rExperiencia.findById(id);    
+        return rExperiencia.findById(id); //Buscar uno en particular por ID.   
     }
     
     public Optional<Experiencia> getByNombreE(String nombreE){/* optional: porque puede estar y puede que no*/
@@ -53,8 +53,7 @@ public class SExperiencia {
     
     public boolean existsByNombreE(String nombreE){
         return rExperiencia.existsByNombreE(nombreE);
-    }
-    
+    }    
 }
     
 

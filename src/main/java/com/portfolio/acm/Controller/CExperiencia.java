@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("explab")
-//@CrossOrigin(origins = "*") //http://localhost:4200
+//@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*")
 
 public class CExperiencia {
@@ -47,10 +47,11 @@ public class CExperiencia {
        
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoExperiencia dtoexp){
-        if(StringUtils.isBlank(dtoexp.getNombreE()))
+        if(StringUtils.isBlank(dtoexp.getNombreE()))/*"isBlank" viene en la dependencia commons-lang3 que 
+                                                        se agrego en el pom.xml*/
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(sExperiencia.existsByNombreE(dtoexp.getNombreE()))
-            return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("La experiencia ya existe"), HttpStatus.BAD_REQUEST);
         
         Experiencia experiencia = new Experiencia(dtoexp.getNombreE(), dtoexp.getDescripcionE());
         sExperiencia.save(experiencia);
@@ -80,8 +81,7 @@ public class CExperiencia {
         sExperiencia.save(experiencia); //Que guarde el objeto.
         return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
     } 
-    
-    
+        
      @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         //Validación si NO (negando con el "!") existe el ID.
@@ -91,6 +91,6 @@ public class CExperiencia {
         sExperiencia.delete(id); /* En el caso que exista la experiencia le vamos a pasar por id la
                                     experiencia que queremos eliminar.*/
         
-        return new ResponseEntity(new Mensaje("Experiencia eliminada"),HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("La experiencia ha sido eliminada"),HttpStatus.OK);
     }
 }

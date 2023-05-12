@@ -12,9 +12,9 @@ import javax.validation.constraints.NotBlank;
  */
 
 public class dtoExperiencia {
-    @NotBlank
+    @NotBlank //No puede estar en blanco o vacío.
     private String nombreE;
-    @NotBlank
+    @NotBlank //No puede estar en blanco o vacío.
     private String descripcionE;
     
     // <<<<<<<<<<<<     CONSTRUCTORES       >>>>>>>>>>>>>>
