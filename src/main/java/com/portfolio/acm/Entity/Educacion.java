@@ -28,6 +28,7 @@ public class Educacion {
     }
 
     public Educacion(String nombreE, String descripcionE) {
+        //Sin Id porque va a ser incremental.
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
     }

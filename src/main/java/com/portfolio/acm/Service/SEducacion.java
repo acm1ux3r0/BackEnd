@@ -26,7 +26,7 @@ public class SEducacion {
     REducacion rEducacion;
 
     public List<Educacion> list() {
-        return rEducacion.findAll();// Que arme una lista trayendonos todos.
+        return rEducacion.findAll();// Que arme una lista trayendonos todo.
     }
 
     public Optional<Educacion> getOne(int id) {

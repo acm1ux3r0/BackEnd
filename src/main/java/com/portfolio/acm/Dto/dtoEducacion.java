@@ -13,10 +13,10 @@ import javax.validation.constraints.NotBlank;
 
 public class dtoEducacion {
     
-    @NotBlank
+    @NotBlank //No puede estar vacío.
     private String nombreE;
     
-    @NotBlank
+    @NotBlank //No puede estar vacío.
     private String descripcionE;
 
 //<<<<<<<<<<        CONSTRUCTORES       >>>>>>>>>>>
