@@ -44,11 +44,12 @@ public class CEducacion {
     
     @GetMapping("/detail/{id}")
     public ResponseEntity<Educacion> getById(@PathVariable("id") int id){
+        //Validación para verificar si NO existe la ID.
         if(!sEducacion.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
         }
-        
-        Educacion educacion = sEducacion.getOne(id).get(); 
+        //En el caso que exista que haga lo siguiente.
+            Educacion educacion = sEducacion.getOne(id).get(); 
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
     
