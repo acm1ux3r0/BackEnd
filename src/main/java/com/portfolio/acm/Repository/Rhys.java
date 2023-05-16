@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author acm1ux3r0
  */
 
-
 public interface RHys extends JpaRepository<Hys, Integer>{
     //Los métodos solamente se mencionan; no se desarrolan aquí.
     Optional<Hys> findByNombre(String nombre);

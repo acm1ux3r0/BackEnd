@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @author acm1ux3r0
  */
 
-@Transactional
+@Transactional//Para que haya persistencia de datos tanto en Front como en BackEnd,
 @Service
 public class SHys {
     

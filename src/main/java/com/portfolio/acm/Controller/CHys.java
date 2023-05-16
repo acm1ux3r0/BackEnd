@@ -29,15 +29,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@CrossOrigin(origins = "*") //http://localhost:4200
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "**")
 @RequestMapping("/hys")
 public class CHys {
 
     @Autowired //Para inyectar el servicio.
     SHys shys;
 
-    //Como es parecido al de Experiencia se copia el de CExperiencia.java
+    /*Como es parecido al de Experiencia se copia el de CExperiencia.java realizando 
+        las correcciones correspondientes */
+    
     @GetMapping("/lista")
     public ResponseEntity<List<Hys>> list() {
         List<Hys> list = shys.list();
@@ -53,11 +55,24 @@ public class CHys {
         Hys hys = shys.getOne(id).get();/* Hys es la entidad (tipo) de la variable Hys. */
         return new ResponseEntity(hys, HttpStatus.OK);
     }
+    
+    //BORRA por ID
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        //Validación si (NO) existe el ID.
+        if (!shys.existsById(id)) {
+            return new ResponseEntity(new Mensaje("La Skill no existe"), HttpStatus.BAD_REQUEST);
+        }
+
+        shys.delete(id);
+        return new ResponseEntity(new Mensaje("La Skill ha sido eliminada"), HttpStatus.OK);
+    }
 
     //Para crear una habilidad.
     @PostMapping("/create/")
     public ResponseEntity<?> create(@RequestBody dtoHys dtohys) {
-        if (StringUtils.isBlank(dtohys.getNombre())) {
+        if (StringUtils.isBlank(dtohys.getNombre())) {/*.isBlank es una librería de la dependencias del
+                                                        org.projectlombok se instalaron en el pom.xml*/
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         if (shys.existsByNombre(dtohys.getNombre())) {
@@ -69,7 +84,7 @@ public class CHys {
         Hys hys = new Hys(dtohys.getNombre(), dtohys.getPorcentaje());
         shys.save(hys);
 
-        return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
 
     }
 
@@ -80,8 +95,9 @@ public class CHys {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
 
-        //Comparando nombres de experiencia.
-        if (shys.existsByNombre(dtohys.getNombre()) && shys.getByNombre(dtohys.getNombre()).get().getId() != id) {
+        //Comparando nombres de Skills.
+        if (shys.existsByNombre(dtohys.getNombre()) && shys.getByNombre(dtohys.getNombre())
+                .get().getId() != id) {
             return new ResponseEntity(new Mensaje("Ese nombre de skill ya existe"), HttpStatus.BAD_REQUEST);
         }
 
@@ -98,16 +114,5 @@ public class CHys {
         return new ResponseEntity(new Mensaje("La Skill ha sido actualizada"), HttpStatus.OK);
     }
 
-    //BORRA por ID
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        //Validación si (NO) existe el ID.
-        if (!shys.existsById(id)) {
-            return new ResponseEntity(new Mensaje("El Skill ha sido eliminado"), HttpStatus.BAD_REQUEST);
-        }
-
-        shys.delete(id);
-
-        return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
-    }
+    
 }

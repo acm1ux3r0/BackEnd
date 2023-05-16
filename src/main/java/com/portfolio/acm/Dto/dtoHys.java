@@ -13,7 +13,6 @@ import javax.validation.constraints.NotBlank;
 
 public class dtoHys {
 
-    
     @NotBlank //Para indicar que no puede estar vacío
     private String nombre;
     
