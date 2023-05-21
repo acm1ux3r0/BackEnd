@@ -43,7 +43,7 @@ public class PersonaController {
     //TRAER Lista de Personas.
     @GetMapping("personas/traer")//Lo podrá hacer tanto usuario como admin.
     /* @GetMapping("personas/traer") Es la forma en que el Front, dependiendo de la URL que le pasemos
-        (por ejemplo: "personas/traer") va ejecutar el método correspondiente */
+        (por ejemplo: "personas/traer") va a diferenciar y ejecutar el método correspondiente */
     public List<Persona> getPersona(){
         return ipersonaService.getPersona();        
     }
@@ -70,18 +70,21 @@ public class PersonaController {
     //Va a quedar: URL:PUERTO/personas/editar/4(id del usuario)/(parámetro)nombre & apellido & img
     @PutMapping("/personas/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
-                               @RequestParam("nombre") String nuevoNombre,/*nuevoNombre es el nombre de la
-                                                                            variable que va a contener 
-                                                                            el dato que tiene que poner
-                                                                            la otra variable: ("nombre")*/
-                               @RequestParam("apellido") String nuevoApellido,/*nuevoApellido es el nombre de la
-                                                                            variable que va a contener 
-                                                                            el dato que tiene que poner
-                                                                            la otra variable: ("apellido")*/                               
-                               @RequestParam("img") String nuevoImg){/*nuevoImg es el nombre de la
-                                                                            variable que va a contener 
-                                                                            el dato que tiene que poner
-                                                                            la otra variable: ("img")*/
+                               @RequestParam("nombre") String nuevoNombre,
+                                                                /*nuevoNombre es el nombre de la
+                                                                  variable que va a contener 
+                                                                  el dato que tiene que poner
+                                                                  la otra variable: ("nombre")*/
+                               @RequestParam("apellido") String nuevoApellido,
+                                                                /*nuevoApellido es el nombre de la
+                                                                 variable que va a contener 
+                                                                 el dato que tiene que poner
+                                                                 la otra variable: ("apellido")*/                               
+                               @RequestParam("img") String nuevoImg){
+                                                            /*nuevoImg es el nombre de la
+                                                             variable que va a contener 
+                                                             el dato que tiene que poner
+                                                             la otra variable: ("img")*/
         Persona persona = ipersonaService.findPersona(id);
 
         persona.setNombre(nuevoNombre);
@@ -92,11 +95,11 @@ public class PersonaController {
         return persona;// ipersonaservice se va a ancargar de mandarlo a la ENTIDAD.
     }
 
-      /*
+      
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
         return ipersonaService.findPersona((long)1);
-    } */ 
+    }
 }
   /*
     @PutMapping("/update/{id}")
@@ -104,11 +107,13 @@ public class PersonaController {
         if(!personaService.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if(personaService.existsByNombre(dtopersona.getNombre()) && personaService.getByNombre(dtopersona.getNombre()).get().getId() != id){
+        if(personaService.existsByNombre(dtopersona.getNombre()) && personaService
+            .getByNombre(dtopersona.getNombre()).get().getId() != id){
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         if(StringUtils.isBlank(dtopersona.getNombre())){
-            return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El campo no puede estar vacio"),
+                HttpStatus.BAD_REQUEST);
         }
         
         Persona persona = personaService.getOne(id).get();
