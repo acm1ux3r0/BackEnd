@@ -44,18 +44,21 @@ public class CEducacion {
     
     @GetMapping("/detail/{id}")
     public ResponseEntity<Educacion> getById(@PathVariable("id") int id){
-        //Validación para verificar si NO existe la ID.
+        // Validación para saber si existe o no esa ID.
         if(!sEducacion.existsById(id)){
+        /*VALIDACIÓN con NEGACIÓN: se niega sEducación anteponiendo el signo "!" */
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
         }
+        
         //En el caso que exista que haga lo siguiente.
-            Educacion educacion = sEducacion.getOne(id).get(); 
+        Educacion educacion = sEducacion.getOne(id).get(); 
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!sEducacion.existsById(id)){
+            /*VALIDACIÓN con NEGACIÓN: se niega sEducación anteponiendo el signo "!"*/
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
         sEducacion.delete(id);
@@ -64,40 +67,47 @@ public class CEducacion {
     
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducacion dtoeducacion){
-        if(StringUtils.isBlank(dtoeducacion.getNombreE())){/*"isBlank" viene en la dependencia commons-lang3 que 
-                                                                se agrego en el pom.xml*/
+        if(StringUtils.isBlank(dtoeducacion.getNombreE())){
+                    /*"isBlank" viene en la dependencia commons-lang3 que se agrego en el pom.xml */
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         if(sEducacion.existsByNombreE(dtoeducacion.getNombreE())){
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         
-        Educacion educacion = new Educacion(dtoeducacion.getNombreE(),dtoeducacion.getDescripcionE());
-        sEducacion.save(educacion);
+        Educacion educacion = new Educacion(
+                dtoeducacion.getNombreE(),
+                dtoeducacion.getDescripcionE());
         
-        return new ResponseEntity(new Mensaje("Educación creada"), HttpStatus.OK);        
+            sEducacion.save(educacion);        
+            return new ResponseEntity(new Mensaje("Educación creada"), HttpStatus.OK);        
     }
     
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoeducacion){
+        
         if(!sEducacion.existsById(id)){
+            /*VALIDACIÓN con NEGACIÓN: se niega sEducación anteponiendo el signo "!"*/
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
+        
         if(sEducacion.existsByNombreE(dtoeducacion.getNombreE()) && 
                 sEducacion.getByNombreE(dtoeducacion.getNombreE()) .get().getId() != id){
                     return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
+        
         if(StringUtils.isBlank(dtoeducacion.getNombreE())){
             return new ResponseEntity (new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
         }
         
         Educacion educacion = sEducacion.getOne(id).get();
         
+        /*Se procede a actualizar los parámetros. */
         educacion.setNombreE(dtoeducacion.getNombreE());
         educacion.setDescripcionE(dtoeducacion.getDescripcionE());
         
-        sEducacion.save(educacion);
+        sEducacion.save(educacion);//Para guardar la variable "educación" declarada en línea 101.
         
-        return new ResponseEntity(new Mensaje("La Educación ha sido actualizada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("La Educación ha sido actualizada con éxito."), HttpStatus.OK);
     }    
 }
