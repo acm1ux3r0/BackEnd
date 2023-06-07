@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@Transactional //Va a tratar de mantener la Persistencia: lo que tengamos acá también lo mantendrá en la DB.
+@Transactional 
+                /*Va a tratar de mantener la Persistencia: lo que tengamos acá 
+                    también lo mantendrá en la DB.*/
 
 public class SExperiencia {
     
@@ -35,7 +37,8 @@ public class SExperiencia {
         return rExperiencia.findById(id); //Buscar uno en particular por ID.   
     }
     
-    public Optional<Experiencia> getByNombreE(String nombreE){/* optional: porque puede estar y puede que no*/
+    public Optional<Experiencia> getByNombreE(String nombreE){
+        /* optional: porque puede estar y puede que no*/
         return rExperiencia.findByNombreE(nombreE);
     }
     
