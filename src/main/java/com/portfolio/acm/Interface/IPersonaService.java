@@ -18,7 +18,7 @@ import java.util.List;
 public interface IPersonaService {
 
     //Para traer una lista de Personas.
-    public List<Persona> getPersona();// El "<Persona> porque refiere a la Class Persona.java del Entity.
+    public List<Persona> getPersona();//El "<Persona> porque refiere a la Class Persona.java del Entity.
 
     //Guardar objeto del tipo Persona.
     public void savePersona(Persona persona);

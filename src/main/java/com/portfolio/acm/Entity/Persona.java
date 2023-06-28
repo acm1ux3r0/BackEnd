@@ -21,13 +21,14 @@ import lombok.Setter;
 
         // ENTIDAD --> Repositorio --> Interface --> Service --> Controller
 
-@Getter //Con esta Annotation del Lombok nos que el código sea tan extenso.
-@Setter //Con esta Annotation del Lombok nos que el código sea tan extenso.
+@Getter //Con esta Annotation del Lombok nos ayuda a que el código sea tan extenso.
+@Setter //Con esta Annotation del Lombok nos ayuda a que el código sea tan extenso.
 @Entity
 public class Persona {
 
     @Id //Le indicamos que el primer campo va ser una Primary Key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//Se va a generar de modo automático y no va a ser necesario asignarle un número.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)/*Se va a generar de modo automático y
+                                                        no va a ser necesario asignarle un número.*/
     private Long id;
 
     @NotNull
