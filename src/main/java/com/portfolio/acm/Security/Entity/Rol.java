@@ -36,7 +36,7 @@ public class Rol {
     }
 
     public Rol(RolNombre rolNombre) {
-        this.rolNombre = rolNombre;
+        this.rolNombre = rolNombre; /* Constructor sin ID porque se autogenera */
     }
     
     //<<<<<<<<<<    GETTERS & SETTERS   >>>>>>>>>>
